@@ -23,3 +23,39 @@ Also called red-green testing as all tests go from a red failed state to green p
 Watch mode is an option that we can pass to Jest asking to watch files that have changed since the last commit and execute test related only to those changed files.
 
 An optimization designed to make your tests run fast regardless of how many tests you have.
+On running we npm run test we are starting Jest with watch mode.
+
+### Filtering Tests with Jest
+* with flag <code>a</code> we run all the tests.
+* with flag <code>o</code> it will run test for changed files.
+* with flag <code>p</code> it will run test by file names regex pattern.
+* with flag <code>t</code> it will run tests according to test names.
+
+### Only and Skip Methods of test
+
+There are two more ways to filter the tests in a test file that contains multiple tests.
+* if we call <code>.only()</code> method of test global method and run the test then only test called with <code> .only()</code> method will run. <code> test.only()</code> 
+* if we call <code>.skip()</code> method of test global method and run the test then that test called with <code> .skip()</code> will be skipped from the test file and rest tests method will run. <code> test.skip()</code>
+
+### Grouping Test with Jest
+If you prefer to group tests you can use describe method provided by global test method.
+To do that we will use <code>describe(name, function/cb)</code>  method and in function we will write all the tests that we want to group together.
+
+    describe("Title grouped with Describe", ()=>{
+    test(' renders Welcome correctly' , ()=>{
+        render(<Title />)
+        const textElement = screen.getByText(/welcome/i)
+        expect(textElement).toBeInTheDocument()
+    })
+    test('renders Welcome with a name', ()=>{
+        render(<Title name='YYYY'/>)
+        const textElement = screen.getByText(/welcome yyyy/i)
+        expect(textElement).toBeInTheDocument()
+    })
+})
+</code>
+* We can also use nested describe methods.
+* We can also use only and skip method on describe as we previously used for test global method.
+
+### Describe vs Suites
+Test suite corresponds to the test files that are processed , so one file is one suite and describe is a group of tests.
