@@ -59,3 +59,39 @@ To do that we will use <code>describe(name, function/cb)</code>  method and in f
 
 ### Describe vs Suites
 Test suite corresponds to the test files that are processed , so one file is one suite and describe is a group of tests.
+
+### Filename Conventions
+* Files with .test.js or .test.tsx suffix.
+* Files with .spec.js or .spec.tsx suffix.
+* Files with .js or .tsx suffix in __tests__ folders.
+
+* !Important : Recommendation is to always put your tests next to the code they are testing so that relative imports are shorter.
+
+* There is an alternative to test method we can also use <code>it()</code> method in Jest. Similarly we can also use skip or only with <code>it()</code> method but syntax will be little different. 
+- we will use `xit`method to skip one test and to run a particular test we use `fit`method.
+
+### Code Coverage
+A metric that can help you understand how much of your software code is tested.
+
+* Statement coverage: how many statements in the software code have ben executed.
+* Branches coverage: how many branches of the control structures have been executed.`e.g. if statements for instance`.
+* Function coverage: how many functions defined have been called.
+* Line coverage: how many of lines of source code have been tested.
+
+we will create another script in package.json `"coverage": "npm run test -- --coverage"`. It takes more time that is why we added a different script for it and not updated our test script.
+
+We can also pass the directory for coverage e.g. `npm test -- --coverage --watchAll --collectCoverageFrom='src/components/**/*.{ts,tsx}'`
+
+### Setting Threshold in Jest for tests:
+`  "jest":{
+    "coverageThreshold":{
+      "global":{
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": -10
+      }
+    }
+  }` By adding this property to package.json we can set the threshold for coverage and it is very useful to check how many function , statements, lines or conditions are there with out tests.
+
+  * jest also creates an html file for our coverage report. With coverage implementation you can check in coverage you will find index.html file inside lcov-report folder.

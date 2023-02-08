@@ -5,7 +5,11 @@ type TitleProps = {
 function Title(props: TitleProps) {
 
     return (
-        <div>Welcome {props.name}</div>
+        <div>
+
+            <div>Welcome {props.name? props.name: "Guest"}</div>
+            {props? <h1>got props</h1>:<p>no props</p>}
+        </div>
     )
 }
 
